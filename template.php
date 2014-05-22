@@ -6,28 +6,29 @@
  */
 
 function bootstrap_admin_preprocess_region(&$variables) {
+  global $user;
   $region = $variables['region'];
   // Handle regions.
   switch ($region) {
     case 'navigation':
-      // Load the Management and User menus to merge together.
-      $management_menu = menu_tree('management');
-      $user_menu = menu_tree('user-menu');
-
-      // Merge the two menus into the Task Menu.
-      $variables['task_menu'] = array_merge($management_menu, $user_menu);
-
-      // Set the menu to use bootstrap_admin_menu_tree__navright().
-      $variables['task_menu']['#theme_wrappers'] = array('menu_tree__navright');
-
-      // Alter the titles to use Glyphicons instead of text.
-      $variables['task_menu']['0']['#title'] = '<span class="glyphicon glyphicon-cog"></span>';
-      $variables['task_menu']['0']['#localized_options']['html'] = TRUE;
-      $variables['task_menu']['1']['#title'] = '<span class="glyphicon glyphicon-user"></span>';
-      $variables['task_menu']['1']['#localized_options']['html'] = TRUE;
-      $variables['task_menu']['2']['#title'] = '<span class="glyphicon glyphicon-log-out"></span>';
-      $variables['task_menu']['2']['#localized_options']['html'] = TRUE;
-
+      if (in_array('administrator', $user->roles)) {
+        $variables['task_menu'] ='
+        <ul class="nav navbar-nav navbar-right">
+          <li class="first last expanded active-trail dropdown"><a href="/admin" class="active-trail dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="first leaf"><a href="/admin/content" title="Find and manage content.">Content Dashboard</a></li>
+              <li class="leaf"><a href="/admin/structure" title="Administer blocks, content types, menus, etc.">Structure</a></li>
+              <li class="leaf"><a href="/admin/appearance" title="Select and configure your themes.">Appearance</a></li>
+              <li class="leaf"><a href="/admin/people" title="Manage user accounts, roles, and permissions.">People</a></li>
+              <li class="leaf"><a href="/admin/modules" title="Extend site functionality.">Modules</a></li>
+              <li class="leaf"><a href="/admin/config" title="Administer settings.">Configuration</a></li>
+              <li class="last leaf"><a href="/admin/reports" title="View reports, updates, and errors.">Reports</a></li>
+            </ul>
+          </li>
+          <li class="first leaf"><a href="/user"><span class="glyphicon glyphicon-user"></span></a></li>
+          <li class="last leaf"><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+        </ul>';
+      }
       break;
   }
 }
