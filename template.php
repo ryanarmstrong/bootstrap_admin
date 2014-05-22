@@ -14,7 +14,7 @@ function bootstrap_admin_preprocess_region(&$variables) {
       if (in_array('administrator', $user->roles)) {
         $variables['task_menu'] ='
         <ul class="nav navbar-nav navbar-right">
-          <li class="first last expanded active-trail dropdown"><a href="/admin" class="active-trail dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
+          <li class="first expanded dropdown"><a href="/admin" class="active-trail dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="first leaf"><a href="/admin/content" title="Find and manage content.">Content Dashboard</a></li>
               <li class="leaf"><a href="/admin/structure" title="Administer blocks, content types, menus, etc.">Structure</a></li>
@@ -25,19 +25,12 @@ function bootstrap_admin_preprocess_region(&$variables) {
               <li class="last leaf"><a href="/admin/reports" title="View reports, updates, and errors.">Reports</a></li>
             </ul>
           </li>
-          <li class="first leaf"><a href="/user"><span class="glyphicon glyphicon-user"></span></a></li>
+          <li class="leaf"><a href="/user"><span class="glyphicon glyphicon-user"></span></a></li>
           <li class="last leaf"><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
         </ul>';
       }
       break;
   }
-}
-
-/**
- * Bootstrap theme wrapper function for the primary menu links.
- */
-function bootstrap_admin_menu_tree__navright(&$variables) {
-  return '<ul class="nav navbar-nav navbar-right">' . $variables['tree'] . '</ul>';
 }
 
 /**
