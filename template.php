@@ -11,7 +11,7 @@ function bootstrap_admin_preprocess_region(&$variables) {
   // Handle regions.
   switch ($region) {
     case 'navigation':
-      if (in_array('administrator', $user->roles)) {
+      if (in_array('administrator', $user->roles) || $user->uid === '1') {
         $variables['task_menu'] ='
         <ul class="nav navbar-nav navbar-right">
           <li class="first expanded dropdown"><a href="/admin" class="active-trail dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
