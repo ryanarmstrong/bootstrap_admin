@@ -201,34 +201,19 @@ function bootstrap_admin_links($variables) {
  * Overrides theme_bootstrap_btn_dropdown().
  */
 function bootstrap_admin_bootstrap_btn_dropdown($variables) {
-  $type_class = '';
-  $sub_links = '';
-
+  // Add button classes.
   $variables['attributes']['class'][] = 'btn-group';
-  // Type class.
-  if (isset($variables['type'])) {
-    $type_class .= ' btn-' . $variables['type'];
-  }
-  else {
-    $type_class .= ' btn-default';
-  }
-
-  // Size class.
-  if (isset($variables['size'])) {
-    $size_class .= ' btn-' . $variables['size'];
-  }
-  else {
-    $size_class .= '';
-  }
+  $type_class = isset($variables['type']) ? ' btn-' . $variables['type'] : ' btn-default';
+  $size_class = isset($variables['size']) ? ' btn-' . $variables['size'] : '';
 
   // Start markup.
   $output = '<div' . drupal_attributes($variables['attributes']) . '>';
 
   // Add as string if its not a link.
-  if (is_array($variables['label'])) {
+  if (isset($variables['label']) && is_array($variables['label'])) {
     $output .= l($variables['label']['title'], $variables['label']['href'], $variables['label']);
   }
-  // If Button Split, add that
+  // If Button Split, add that.
   if ($variables['split'] === TRUE) {
     $first_link = array_shift($variables['links']);
     $output .= l($first_link['title'], $first_link['href'], array('attributes' => array('type' => 'button', 'class' => 'btn' . $type_class . $size_class)));
@@ -236,18 +221,18 @@ function bootstrap_admin_bootstrap_btn_dropdown($variables) {
   $output .= '<a class="btn' . $type_class . $size_class . ' dropdown-toggle" data-toggle="dropdown" href="#">';
 
   // It is a link, create one.
-  if (is_string($variables['label'])) {
+  if (isset($variables['label']) && is_string($variables['label'])) {
     $output .= check_plain($variables['label']);
   }
-  if (is_array($variables['links'])) {
-    $sub_links = theme('links', array(
+  $sub_links = is_array($variables['links']) ?
+    theme('links', array(
       'links' => $variables['links'],
       'context' => 'from_theme',
       'attributes' => array(
         'class' => array('dropdown-menu'),
       ),
-    ));
-  }
+    )) : '';
+
   // Finish markup.
   $output .= '<span class="caret"></span></a>' . $sub_links . '</div>';
   return $output;
