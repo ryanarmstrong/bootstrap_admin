@@ -75,10 +75,6 @@
 
 ?>
 
-<?php if ($page['navigation']): ?>
-  <?php print render($page['navigation']); ?>
-<?php endif; ?>
-
 <div class="main-container container-fluid">
 
   <?php /* region--header.tpl.php */ ?>

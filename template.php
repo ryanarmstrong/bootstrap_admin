@@ -5,34 +5,6 @@
  * template.php
  */
 
-function bootstrap_admin_preprocess_region(&$variables) {
-  global $user;
-  $region = $variables['region'];
-  // Handle regions.
-  switch ($region) {
-    case 'navigation':
-      if (in_array('administrator', $user->roles) || $user->uid === '1') {
-        $variables['task_menu'] ='
-        <ul class="nav navbar-nav navbar-right">
-          <li class="first expanded dropdown"><a href="/admin" class="active-trail dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li class="first leaf"><a href="/admin/content" title="Find and manage content.">Content Dashboard</a></li>
-              <li class="leaf"><a href="/admin/structure" title="Administer blocks, content types, menus, etc.">Structure</a></li>
-              <li class="leaf"><a href="/admin/appearance" title="Select and configure your themes.">Appearance</a></li>
-              <li class="leaf"><a href="/admin/people" title="Manage user accounts, roles, and permissions.">People</a></li>
-              <li class="leaf"><a href="/admin/modules" title="Extend site functionality.">Modules</a></li>
-              <li class="leaf"><a href="/admin/config" title="Administer settings.">Configuration</a></li>
-              <li class="last leaf"><a href="/admin/reports" title="View reports, updates, and errors.">Reports</a></li>
-            </ul>
-          </li>
-          <li class="leaf"><a href="/user"><span class="glyphicon glyphicon-user"></span></a></li>
-          <li class="last leaf"><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
-        </ul>';
-      }
-      break;
-  }
-}
-
 /**
  * Implements hook_theme().
  *
