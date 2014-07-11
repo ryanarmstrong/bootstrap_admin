@@ -29,7 +29,37 @@ function bootstrap_admin_theme(&$existing, $type, $theme, $path) {
         'split' => FALSE,
       ),
     ),
+    'user_login' => array(
+      'render element' => 'form',
+      'path' => drupal_get_path('theme', 'bootstrap_admin') . '/theme/user',
+      'template' => 'user-login',
+      'preprocess functions' => array(
+         'bootstrap_admin_preprocess_user_login'
+      ),
+    ),
+    'user_pass' => array(
+      'render element' => 'form',
+      'path' => drupal_get_path('theme', 'bootstrap_admin') . '/theme/user',
+      'template' => 'user-pass',
+      'preprocess functions' => array(
+        'bootstrap_admin_preprocess_user_pass'
+      ),
+    ),
   );
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function bootstrap_admin_preprocess_region(&$variables) {
+  $region = $variables['region'];
+  // Use the user content region template.
+  if (($_GET['q'] == 'user/login' || $_GET['q'] == 'user' || $_GET['q'] == 'user/password') && $region == 'content') {
+    $variables['theme_hook_suggestions'][] = 'region__content__user';
+  }
+  if ($_GET['q'] == 'user' && !user_is_logged_in()) {
+    drupal_goto('user/login');
+  }
 }
 
 /**
@@ -210,3 +240,15 @@ function bootstrap_admin_bootstrap_btn_dropdown($variables) {
   return $output;
 }
 
+function bootstrap_admin_preprocess_user_login(&$vars) {
+  $vars['form']['name']['#attributes']['placeholder'] = t('Username');
+  unset($vars['form']['name']['#title']);
+  $vars['form']['pass']['#attributes']['placeholder'] = t('Password');
+  unset($vars['form']['pass']['#title']);
+  $vars['form']['actions']['submit']['#attributes']['class'] = array('btn-primary', 'btn-block', 'btn-lg');
+}
+function bootstrap_admin_preprocess_user_pass(&$vars) {
+  $vars['form']['name']['#attributes']['placeholder'] = t('Username or e-mail address');
+  unset($vars['form']['name']['#title']);
+  $vars['form']['actions']['submit']['#attributes']['class'] = array('btn-primary', 'btn-block', 'btn-lg');
+}
