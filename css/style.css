@@ -6553,4 +6553,9 @@ footer {
 #user-login .form-group {
   margin-bottom: 0;
 }
+.more-button {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+}
 /*# sourceMappingURL=style.css.map */
