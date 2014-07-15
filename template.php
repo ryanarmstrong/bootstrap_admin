@@ -75,9 +75,9 @@ function bootstrap_admin_links($variables) {
 
   // Whitelist of pages that should use a split button group instead of the standard links theme
   $whitelist = array(
-    'admin/structure/context',
-    'admin/structure/flags',
-    'admin/structure/menu/manage/translation',
+    // 'admin/structure/context',
+    // 'admin/structure/flags',
+    // 'admin/structure/menu/manage/translation',
   );
 
   // Intercept certain 'links' themes and convert them to other Bootstrap components
