@@ -54,11 +54,13 @@ function bootstrap_admin_theme(&$existing, $type, $theme, $path) {
 function bootstrap_admin_preprocess_region(&$variables) {
   $region = $variables['region'];
   // Use the user content region template.
-  if (($_GET['q'] == 'user/login' || $_GET['q'] == 'user' || $_GET['q'] == 'user/password') && $region == 'content') {
-    $variables['theme_hook_suggestions'][] = 'region__content__user';
-  }
-  if ($_GET['q'] == 'user' && !user_is_logged_in()) {
-    drupal_goto('user/login');
+  if (!user_is_logged_in()) {
+    if (($_GET['q'] == 'user/login' || $_GET['q'] == 'user' || $_GET['q'] == 'user/password') && $region == 'content') {
+      $variables['theme_hook_suggestions'][] = 'region__content__user';
+    }
+    if ($_GET['q'] == 'user') {
+      drupal_goto('user/login');
+    }
   }
 }
 
