@@ -82,20 +82,12 @@
 
   <div class="row">
 
-    <?php /* region--sidebar.tpl.php */ ?>
-    <?php if ($page['sidebar_first']): ?>
-      <?php print render($page['sidebar_first']); ?>
-    <?php endif; ?>
-
     <?php /* region--content.tpl.php */ ?>
     <?php print render($page['content']); ?>
-
-    <?php /* region--sidebar.tpl.php */ ?>
-    <?php if ($page['sidebar_second']): ?>
-      <?php print render($page['sidebar_second']); ?>
-    <?php endif; ?>
 
   </div>
 </div>
 
-<?php print render($page['footer']); ?>
+<footer class="container-fluid">
+  <p>Copyright © 2014 NVIDIA Corporation</p>
+</footer>
