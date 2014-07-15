@@ -6557,7 +6557,7 @@ footer {
   top: 25px;
   right: 15px;
 }
-body {
+body.logged-in {
   background-color: #222222;
 }
 .main-container {
