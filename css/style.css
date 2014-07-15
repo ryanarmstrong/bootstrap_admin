@@ -6484,7 +6484,6 @@ footer {
   color: #999999;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-top: 20px;
 }
 .form-signin {
   max-width: 330px;
@@ -6557,5 +6556,13 @@ footer {
   position: absolute;
   top: 25px;
   right: 15px;
+}
+body {
+  background-color: #222222;
+}
+.main-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #FFF;
 }
 /*# sourceMappingURL=style.css.map */
