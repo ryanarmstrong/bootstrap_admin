@@ -1,5 +1,5 @@
-name = Bootstrap Admin
-description = An admin theme based on the Drupal Bootstrap base theme.
+name = Content Flow Admin
+description = An admin theme based on the Drupal Bootstrap base theme for use with the Content Flow module.
 core = 7.x
 base theme = bootstrap
 php = 5.3.0

@@ -18,7 +18,7 @@
  *
  * @see _bootstrap_theme()
  */
-function bootstrap_admin_theme(&$existing, $type, $theme, $path) {
+function content_flow_admin_theme(&$existing, $type, $theme, $path) {
   return array(
     'bootstrap_btn_dropdown' => array(
       'variables' => array(
@@ -31,18 +31,18 @@ function bootstrap_admin_theme(&$existing, $type, $theme, $path) {
     ),
     'user_login' => array(
       'render element' => 'form',
-      'path' => drupal_get_path('theme', 'bootstrap_admin') . '/theme/user',
+      'path' => drupal_get_path('theme', 'content_flow_admin') . '/theme/user',
       'template' => 'user-login',
       'preprocess functions' => array(
-         'bootstrap_admin_preprocess_user_login'
+         'content_flow_admin_preprocess_user_login'
       ),
     ),
     'user_pass' => array(
       'render element' => 'form',
-      'path' => drupal_get_path('theme', 'bootstrap_admin') . '/theme/user',
+      'path' => drupal_get_path('theme', 'content_flow_admin') . '/theme/user',
       'template' => 'user-pass',
       'preprocess functions' => array(
-        'bootstrap_admin_preprocess_user_pass'
+        'content_flow_admin_preprocess_user_pass'
       ),
     ),
   );
@@ -51,7 +51,7 @@ function bootstrap_admin_theme(&$existing, $type, $theme, $path) {
 /**
  * Implements hook_preprocess_region().
  */
-function bootstrap_admin_preprocess_region(&$variables) {
+function content_flow_admin_preprocess_region(&$variables) {
   $region = $variables['region'];
   // Use the user content region template.
   if (!user_is_logged_in()) {
@@ -67,7 +67,7 @@ function bootstrap_admin_preprocess_region(&$variables) {
 /**
  * Override the theme_links() function
  */
-function bootstrap_admin_links($variables) {
+function content_flow_admin_links($variables) {
   $links = $variables['links'];
   $attributes = $variables['attributes'];
   $heading = $variables['heading'];
@@ -204,7 +204,7 @@ function bootstrap_admin_links($variables) {
 /**
  * Overrides theme_bootstrap_btn_dropdown().
  */
-function bootstrap_admin_bootstrap_btn_dropdown($variables) {
+function content_flow_admin_bootstrap_btn_dropdown($variables) {
   // Add button classes.
   $variables['attributes']['class'][] = 'btn-group';
   $type_class = isset($variables['type']) ? ' btn-' . $variables['type'] : ' btn-default';
@@ -242,14 +242,14 @@ function bootstrap_admin_bootstrap_btn_dropdown($variables) {
   return $output;
 }
 
-function bootstrap_admin_preprocess_user_login(&$vars) {
+function content_flow_admin_preprocess_user_login(&$vars) {
   $vars['form']['name']['#attributes']['placeholder'] = t('Username');
   unset($vars['form']['name']['#title']);
   $vars['form']['pass']['#attributes']['placeholder'] = t('Password');
   unset($vars['form']['pass']['#title']);
   $vars['form']['actions']['submit']['#attributes']['class'] = array('btn-primary', 'btn-block', 'btn-lg');
 }
-function bootstrap_admin_preprocess_user_pass(&$vars) {
+function content_flow_admin_preprocess_user_pass(&$vars) {
   $vars['form']['name']['#attributes']['placeholder'] = t('Username or e-mail address');
   unset($vars['form']['name']['#title']);
   $vars['form']['actions']['submit']['#attributes']['class'] = array('btn-primary', 'btn-block', 'btn-lg');
