@@ -82,8 +82,18 @@
 
   <div class="row">
 
+    <?php /* region--sidebar.tpl.php */ ?>
+    <?php if ($page['sidebar_first']): ?>
+      <?php print render($page['sidebar_first']); ?>
+    <?php endif; ?>
+
     <?php /* region--content.tpl.php */ ?>
     <?php print render($page['content']); ?>
+
+    <?php /* region--sidebar.tpl.php */ ?>
+    <?php if ($page['sidebar_second']): ?>
+      <?php print render($page['sidebar_second']); ?>
+    <?php endif; ?>
 
   </div>
 </div>
