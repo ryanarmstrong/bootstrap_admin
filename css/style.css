@@ -5770,6 +5770,9 @@ table .checkbox input[type="checkbox"] {
     width: 16.66666667%;
   }
 }
+.alert {
+  overflow: hidden;
+}
 .alert a {
   font-weight: bold;
 }
