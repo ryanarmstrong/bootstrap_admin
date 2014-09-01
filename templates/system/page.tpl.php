@@ -91,7 +91,7 @@
 	      <?php endif; ?>
 	      <?php print render($title_suffix); ?>
 	      <?php print $messages; ?>
-	      <?php if (!empty($tabs) && !_is_node_page()): ?>
+	      <?php if (!empty($tabs) && !_content_flow_is_node_page()): ?>
 	        <?php print render($tabs); ?>
 	      <?php endif; ?>
 	      <?php if (!empty($page['help'])): ?>
