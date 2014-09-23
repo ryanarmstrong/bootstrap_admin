@@ -5941,8 +5941,11 @@ footer {
 }
 .more-button {
   position: absolute;
-  top: 25px;
+  top: 5px;
   right: 15px;
+}
+#all-content .more-button {
+  top: 25px;
 }
 body.logged-in {
   background-color: #222222;
